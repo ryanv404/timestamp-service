@@ -11,7 +11,19 @@
     <h1>Timestamp Converter Microservice</h1>
     <hr />
     <br /><br />
-    <h3>Instructions</h3>
+    <h3>Timestamp and date-string converter</h3>
+    <br />
+
+    <label for="dateID">Timestamp or date string:</label><br />
+    <input type="text" name="dateID" id="dateID" />
+    <input type="submit" value="Submit" id="submit_btn" />
+
+    <br /><br /><br />
+    <code id="result"></code>
+    <br /><br />
+    <br />
+    <hr />
+    <h3>API instructions</h3>
     <p>
       Append a timestamp (in milliseconds) or a numeric date string (YYYY-MM-DD)
       to the end of the <code>[project-url]/api/</code> URL. You will receive an
@@ -20,7 +32,7 @@
       <br />Please see the example URL's below.
     </p>
     <br />
-    <h3>Example usage:</h3>
+    <h3>Example usage</h3>
     <ul>
       <li>
         <a href="http://localhost:3000/api/2020-12-12"
@@ -34,10 +46,36 @@
       </li>
     </ul>
     <br />
-    <h3>Example output:</h3>
+    <h3>Example output</h3>
     <p>
-      <code>{"unix": "1607110465", "utc": "Fri, 04 Dec 2020 19:34:25 GMT"</code>
+      <code
+        >{"unix": 1638482771618, "utc": "Thu, 02 Dec 2021 22:06:11 GMT"</code
+      >
     </p>
-    <script src="browser-app.js"></script>
+    <br />
+    <script>
+      const container = document.getElementById("result");
+      const btn = document.getElementById("submit_btn");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const dateText = document.getElementById("dateID").value;
+        let url = `http://localhost:3000/api/${dateText}`;
+
+        fetch(url)
+          .then((resp) => resp.json())
+          .then((data) => {
+            let displayText = JSON.stringify(data);
+            showResult(displayText);
+          })
+          .catch((err) => console.log(err));
+
+        document.getElementById("dateID").value = "";
+      });
+
+      const showResult = (result) => {
+        container.innerText = result;
+      };
+    </script>
   </body>
 </html>

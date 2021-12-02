@@ -1,0 +1,23 @@
+{
+  "name": "timestamp",
+  "version": "1.0.0",
+  "description": "An app to return a date from a timestamp URL param and vice-a-versa.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "fcc",
+    "node"
+  ],
+  "author": "Ryan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
